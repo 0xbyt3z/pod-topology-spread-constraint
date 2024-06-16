@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-next-app
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test-nextjs-app
+  template:
+    metadata:
+      labels:
+        app: my-nextjs-app
+    spec:
+      containers:
+        - name: k8s-ptsc
+          image: 0xbyt3z/k8s-ptsc:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
